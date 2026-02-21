@@ -284,18 +284,33 @@ const Storage = {
 // 1. ГЛАВНАЯ (LANDING) - ПРЕМИУМ ВЕРСИЯ
 const Landing = ({ onStart }) => {
   const { t } = useLanguage();
+
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const headerOffset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
+  };
+
   return (
-    <div style={{ minHeight: '100vh', width: '100%', background: theme.bg, color: 'white', overflowX: 'hidden', fontFamily: "'Inter', system-ui, sans-serif" }}>
+    <div style={{ minHeight: '100vh', width: '100%', background: theme.bg, color: 'white', overflowX: 'hidden', fontFamily: "'Inter', sans-serif" }}>
 
       {/* --- HEADER --- */}
       <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '20px 40px', maxWidth: '1200px', margin: '0 auto', position: 'sticky', top: 0, zIndex: 100, backdropFilter: 'blur(12px)', background: 'rgba(11, 14, 20, 0.8)' }}>
-        <div style={{ fontSize: '24px', fontWeight: '800', letterSpacing: '-0.5px', cursor: 'pointer' }} onClick={() => onStart('landing')}>
+        <div style={{ fontSize: '24px', fontWeight: '800', letterSpacing: '-0.5px', cursor: 'pointer' }} onClick={() => { window.scrollTo({ top: 0, behavior: 'smooth' }); onStart('landing'); }}>
           <span style={{ background: `linear-gradient(135deg, ${theme.primary}, ${theme.violet})`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Esqory</span>
         </div>
         <nav className="nav-links" style={{ display: 'flex', gap: '30px', alignItems: 'center' }}>
-          <a href="#about" style={{ color: theme.textSecondary, textDecoration: 'none', fontSize: '14px', fontWeight: '500', transition: 'color 0.2s' }}>{t('about')}</a>
-          <a href="#features" style={{ color: theme.textSecondary, textDecoration: 'none', fontSize: '14px', fontWeight: '500', transition: 'color 0.2s' }}>{t('features')}</a>
-          <a href="#parents" style={{ color: theme.textSecondary, textDecoration: 'none', fontSize: '14px', fontWeight: '500', transition: 'color 0.2s' }}>{t('parents')}</a>
+          <span onClick={() => scrollToSection('about')} className="nav-link">{t('about')}</span>
+          <span onClick={() => scrollToSection('features')} className="nav-link">{t('features')}</span>
+          <span onClick={() => scrollToSection('parents')} className="nav-link">{t('parents')}</span>
           <LanguageSwitcher />
           <button onClick={() => onStart('kids')} className="btn-primary" style={{ padding: '10px 24px', fontSize: '14px', height: '40px' }}>{t('login')}</button>
         </nav>
@@ -413,9 +428,9 @@ const Landing = ({ onStart }) => {
                 <div style={{ width: '62%', height: '100%', borderRadius: '4px', background: `linear-gradient(90deg, ${theme.primary}, ${theme.violet})` }} />
               </div>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
-              <button className="btn-primary" style={{ padding: '16px', fontSize: '14px', background: theme.success }}>{t('addFunds')}</button>
-              <button className="btn-primary" style={{ padding: '16px', fontSize: '14px', background: 'rgba(255,255,255,0.05)', border: `1px solid ${theme.border}` }}>{t('withdrawFunds')}</button>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px' }}>
+              <button className="btn-primary" style={{ padding: '20px', fontSize: '18px', background: theme.success }}>{t('addFunds')}</button>
+              <button className="btn-primary" style={{ padding: '20px', fontSize: '18px', background: 'rgba(255,255,255,0.05)', border: `1px solid ${theme.border}` }}>{t('withdrawFunds')}</button>
             </div>
           </div>
         </div>
@@ -424,17 +439,17 @@ const Landing = ({ onStart }) => {
       {/* --- SHOWCASE 2: PRO --- */}
       <section className="showcase-grid" style={{ padding: '100px 20px', maxWidth: '1000px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '60px', alignItems: 'center' }}>
         {/* Визуализация интерфейса подростка - КЛОН РЕАЛЬНОГО ИНТЕРФЕЙСА */}
-        <div className="glass" style={{ borderRadius: '24px', padding: '24px', animation: 'float 6s ease-in-out infinite reverse' }}>
-          <h3 style={{ marginBottom: '15px', fontSize: '18px', display: 'flex', alignItems: 'center', gap: '10px' }}>🇰🇿 {t('taxSimTitle')}</h3>
-          <div style={{ marginBottom: '20px' }}>
-            <div style={{ fontSize: '11px', color: theme.textSecondary, marginBottom: '6px' }}>{t('incomeLabel')}</div>
-            <div style={{ background: 'rgba(0,0,0,0.3)', padding: '12px', borderRadius: '10px', border: `1px solid ${theme.border}`, fontSize: '14px' }}>150 000</div>
+        <div className="glass" style={{ borderRadius: '24px', padding: '30px', animation: 'float 6s ease-in-out infinite reverse', border: `1px solid ${theme.border}` }}>
+          <h3 style={{ marginBottom: '20px', fontSize: '20px', display: 'flex', alignItems: 'center', gap: '10px' }}>🇰🇿 {t('taxSimTitle')}</h3>
+          <div style={{ marginBottom: '25px' }}>
+            <div style={{ fontSize: '12px', color: theme.textSecondary, marginBottom: '8px' }}>{t('incomeLabel')}</div>
+            <div style={{ background: 'rgba(0,0,0,0.3)', padding: '16px', borderRadius: '12px', border: `1px solid ${theme.border}`, fontSize: '16px', color: 'white' }}>150 000</div>
           </div>
-          <div style={{ padding: '15px', border: `1px solid ${theme.success}`, borderRadius: '12px', background: 'rgba(16, 185, 129, 0.05)', marginBottom: '10px' }}>
-            <div style={{ fontSize: '11px', color: theme.success }}>Самозанятый (1%)</div>
-            <div style={{ fontSize: '20px', fontWeight: 'bold' }}>1 500 ₸</div>
+          <div style={{ padding: '20px', border: `1px solid ${theme.success}`, borderRadius: '14px', background: 'rgba(16, 185, 129, 0.05)', marginBottom: '15px' }}>
+            <div style={{ fontSize: '12px', color: theme.success, fontWeight: 'bold' }}>{t('taxSelf')} (1%)</div>
+            <div style={{ fontSize: '24px', fontWeight: 'bold', color: 'white', marginTop: '5px' }}>1 500 ₸</div>
           </div>
-          <button className="btn-primary" style={{ width: '100%', padding: '12px', fontSize: '13px' }}>{t('calculateBtn')}</button>
+          <button className="btn-primary" style={{ width: '100%', padding: '16px', fontSize: '16px' }}>{t('calculateBtn')}</button>
         </div>
 
         <div>
@@ -589,7 +604,7 @@ const KidsDashboard = ({ user, onLogout }) => {
   return (
     <div style={{ minHeight: '100vh', width: '100%', background: theme.bg, overflowX: 'hidden' }}>
       <nav style={{ display: 'flex', justifyContent: 'space-between', padding: '20px 40px', borderBottom: `1px solid ${theme.border}`, backdropFilter: 'blur(12px)', background: theme.cardGlass }}>
-        <h3 style={{ fontWeight: '800', cursor: 'pointer' }} onClick={onLogout}>Esqory <span style={{ background: `linear-gradient(90deg, ${theme.primary}, ${theme.violet})`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Kids</span></h3>
+        <h3 style={{ fontWeight: '800', cursor: 'pointer' }} onClick={() => onLogout()}>Esqory <span style={{ background: `linear-gradient(90deg, ${theme.primary}, ${theme.violet})`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Kids</span></h3>
         <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
           <span>{t('hello')}, {user}!</span>
           <LanguageSwitcher />
@@ -632,26 +647,30 @@ const WalletComponent = ({ userData, updateData }) => {
 
   useEffect(() => {
     if (isGoalAchieved && !userData.goalAchieved) {
+      const date = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      const newSavings = userData.savings - userData.goalAmount;
+      const newHistory = [{
+        text: `${t('goalReachedHistory')}: ${userData.goalName} (-${userData.goalAmount.toLocaleString()} ₸)`,
+        color: theme.violet,
+        time: date
+      }, ...userData.history];
+
+      updateData({
+        ...userData,
+        savings: newSavings,
+        history: newHistory,
+        goalAchieved: true
+      });
+
       setShowSuccessModal(true);
       setShowConfetti(true);
-      updateData({ ...userData, goalAchieved: true });
-      setTimeout(() => setShowConfetti(false), 6000);
+      setTimeout(() => setShowConfetti(false), 5000);
     }
   }, [isGoalAchieved]);
 
   const handleClaimGoal = () => {
-    const date = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    const newSavings = userData.savings - userData.goalAmount;
-    const newHistory = [{
-      text: `${t('goalReachedHistory')}: ${userData.goalName} (-${userData.goalAmount.toLocaleString()} ₸)`,
-      color: theme.violet,
-      time: date
-    }, ...userData.history];
-
     updateData({
       ...userData,
-      savings: newSavings,
-      history: newHistory,
       goalName: '',
       goalAmount: 0,
       goalAchieved: false
@@ -686,10 +705,10 @@ const WalletComponent = ({ userData, updateData }) => {
   };
 
   return (
-    <div className="glass" style={{ padding: '24px', borderRadius: '24px', width: '100%', position: 'relative' }}>
+    <div className="glass" style={{ padding: '24px', borderRadius: '24px', width: '100%', position: 'relative', overflow: 'hidden' }}>
       {showSuccessModal && (
-        <div className="modal-overlay" style={{ position: 'fixed', inset: 0, width: '100vw', height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10000, background: 'rgba(11, 14, 20, 0.9)', backdropFilter: 'blur(8px)' }}>
-          <div className="glass modal-content" style={{ padding: '40px', borderRadius: '32px', textAlign: 'center', maxWidth: '420px', width: '90%', margin: 'auto', border: `1px solid ${theme.primary}50` }}>
+        <div className="modal-overlay">
+          <div className="glass modal-content" style={{ padding: '40px', borderRadius: '32px', textAlign: 'center', maxWidth: '420px', width: '90%', border: `1px solid ${theme.primary}50` }}>
             <div style={{ fontSize: '72px', marginBottom: '20px' }}>🎉</div>
             <h2 style={{ fontSize: '32px', marginBottom: '16px', fontWeight: '800' }}>{t('congrats')}</h2>
             <p style={{ color: theme.textSecondary, marginBottom: '32px', lineHeight: '1.6', fontSize: '18px' }}>
@@ -703,11 +722,12 @@ const WalletComponent = ({ userData, updateData }) => {
         </div>
       )}
 
-      {showConfetti && Array.from({ length: 40 }).map((_, i) => (
+      {showConfetti && Array.from({ length: 60 }).map((_, i) => (
         <div key={i} className="confetti" style={{
-          left: `${Math.random() * 100}vw`,
+          left: `${Math.random() * 100}%`,
           backgroundColor: [`#3B82F6`, `#8B5CF6`, `#10B981`, `#F59E0B`][Math.floor(Math.random() * 4)],
-          animationDelay: `${Math.random() * 1.5}s`,
+          animationDelay: `${Math.random() * 2}s`,
+          animationDuration: `${Math.random() * 2 + 2}s`,
           width: `${Math.random() * 8 + 6}px`,
           height: `${Math.random() * 4 + 8}px`,
         }} />
@@ -874,7 +894,7 @@ const LessonViewer = ({ lesson, onFinish, onBack }) => {
 
 // --- НОВЫЙ ДАШБОРД ДЛЯ ПОДРОСТКОВ (3 РАЗДЕЛА + ДИЗАЙН КАК У ДЕТЕЙ) ---
 const TeensDashboard = ({ user, onLogout }) => {
-  const { t } = useLanguage();
+  const { lang, t } = useLanguage();
   const [section, setSection] = useState('tax'); // 'tax', 'deposit', 'academy'
   const [userData, setUserData] = useState(Storage.getUserData(user));
   const [activeLesson, setActiveLesson] = useState(null); // Для открытия урока
@@ -904,7 +924,7 @@ const TeensDashboard = ({ user, onLogout }) => {
     <div style={{ minHeight: '100vh', width: '100%', background: theme.bg, color: 'white', overflowX: 'hidden' }}>
       {/* Шапка */}
       <nav style={{ display: 'flex', justifyContent: 'space-between', padding: '20px 40px', borderBottom: `1px solid ${theme.border}`, backdropFilter: 'blur(12px)', background: theme.cardGlass }}>
-        <h3 style={{ fontWeight: '800', cursor: 'pointer' }} onClick={onLogout}>Esqory <span style={{ background: `linear-gradient(90deg, ${theme.violet}, ${theme.primary})`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Pro</span></h3>
+        <h3 style={{ fontWeight: '800', cursor: 'pointer' }} onClick={() => onLogout()}>Esqory <span style={{ background: `linear-gradient(90deg, ${theme.violet}, ${theme.primary})`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Pro</span></h3>
         <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
           <span>{t('hello')}, {user}!</span>
           <LanguageSwitcher />
@@ -985,8 +1005,8 @@ const TeenLessonViewer = ({ lesson, onFinish, onBack }) => {
   };
 
   return (
-    <div style={{ minHeight: '100vh', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', background: theme.bg, overflowX: 'hidden' }}>
-      <div style={cardStyle}>
+    <div style={{ position: 'fixed', inset: 0, zIndex: 20000, display: 'flex', justifyContent: 'center', alignItems: 'center', background: theme.bg, overflowX: 'hidden' }}>
+      <div style={{ ...cardStyle, border: `1px solid ${theme.accent}30` }}>
         <button onClick={onBack} style={{ background: 'none', border: 'none', color: theme.textSecondary, marginBottom: '20px', cursor: 'pointer' }}>← {t('back')}</button>
 
         {step === 'content' ? (
@@ -1122,7 +1142,7 @@ const DepositCalculator = () => {
           <button onClick={() => setIsCustomRate(false)} style={{ ...smallTabStyle, background: !isCustomRate ? `linear-gradient(135deg, ${theme.primary}, ${theme.violet})` : 'transparent', border: !isCustomRate ? 'none' : `1px solid ${theme.border}` }}>
             {t('depositBaseRate')}
           </button>
-          <button onClick={() => setIsCustomRate(true)} style={{ ...smallTabStyle, background: isCustomRate ? theme.primary : 'transparent', color: isCustomRate ? 'white' : theme.textSecondary, border: isCustomRate ? 'none' : `1px solid ${theme.border}` }}>
+          <button onClick={() => setIsCustomRate(true)} style={{ ...smallTabStyle, background: isCustomRate ? `linear-gradient(135deg, ${theme.primary}, ${theme.violet})` : 'transparent', color: 'white', border: isCustomRate ? 'none' : `1px solid ${theme.border}` }}>
             {t('depositCustomRate')}
           </button>
         </div>
@@ -1152,66 +1172,6 @@ const DepositCalculator = () => {
 };
 
 const smallTabStyle = { padding: '8px 15px', borderRadius: '8px', cursor: 'pointer', flex: 1, color: 'white', fontSize: '13px' };
-
-// Вспомогательный компонент для карточки урока подростка
-const TeenLessonCard = ({ lesson, isDone, onComplete }) => {
-  const { t } = useLanguage();
-  const [isOpen, setIsOpen] = useState(false);
-  const [step, setStep] = useState('desc'); // desc -> content -> quiz
-
-  const handleQuiz = (isCorrect) => {
-    if (isCorrect) {
-      alert(t('teenCorrectAlert'));
-      onComplete(lesson.id);
-      setIsOpen(false);
-    } else {
-      alert(t('wrongAlert'));
-    }
-  };
-
-  if (!isOpen) {
-    return (
-      <div
-        onClick={() => setIsOpen(true)}
-        style={{ ...cardStyle, cursor: 'pointer', border: isDone ? `1px solid ${theme.accent}` : `1px solid ${theme.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
-      >
-        <div>
-          <span style={{ color: isDone ? theme.accent : theme.textSecondary, fontWeight: 'bold', fontSize: '12px', letterSpacing: '1px' }}>
-            {isDone ? t('done') : t('academyLessonLabel')}
-          </span>
-          <h3 style={{ marginTop: '5px', fontSize: '20px' }}>{lesson.title}</h3>
-          <p style={{ color: theme.textSecondary, fontSize: '14px' }}>{lesson.desc}</p>
-        </div>
-        <div style={{ padding: '10px 20px', background: theme.card, border: `1px solid ${theme.border}`, borderRadius: '10px' }}>{t('startBtn')}</div>
-      </div>
-    );
-  }
-
-  return (
-    <div style={cardStyle}>
-      <button onClick={() => setIsOpen(false)} style={{ background: 'none', border: 'none', color: theme.textSecondary, marginBottom: '15px', cursor: 'pointer' }}>← {t('logout')}</button>
-
-      {step === 'desc' && (
-        <>
-          <h2 style={{ color: theme.accent }}>{lesson.title}</h2>
-          <p style={{ marginTop: '20px', fontSize: '16px', lineHeight: '1.6' }}>{lesson.content}</p>
-          <button onClick={() => setStep('quiz')} style={{ ...primaryBtn, marginTop: '30px' }}>{t('toQuiz')}</button>
-        </>
-      )}
-
-      {step === 'quiz' && (
-        <>
-          <h3 style={{ marginBottom: '20px' }}>Кейс: {lesson.quiz.question}</h3>
-          <div style={{ display: 'grid', gap: '10px' }}>
-            {lesson.quiz.options.map((opt, i) => (
-              <button key={i} onClick={() => handleQuiz(opt.isCorrect)} style={secondaryBtn}>{opt.text}</button>
-            ))}
-          </div>
-        </>
-      )}
-    </div>
-  );
-};
 
 // --- ГЛАВНЫЙ КОНТРОЛЛЕР ---
 // --- ГЛАВНЫЙ КОНТРОЛЛЕР (ОБНОВЛЕННЫЙ С АВТО-ВХОДОМ) ---
