@@ -4,7 +4,7 @@ import { translations } from './translations';
 // --- КОНТЕКСТ ЯЗЫКА ---
 const LanguageContext = createContext();
 
-export const useLanguage = () => useContext(LanguageContext);
+const useLanguage = () => useContext(LanguageContext);
 
 const LanguageSwitcher = () => {
   const { lang, setLang } = useLanguage();
@@ -304,7 +304,7 @@ const Landing = ({ onStart }) => {
 
       {/* --- HEADER --- */}
       <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '20px 40px', maxWidth: '1200px', margin: '0 auto', position: 'sticky', top: 0, zIndex: 100, backdropFilter: 'blur(12px)', background: 'rgba(11, 14, 20, 0.8)' }}>
-        <div style={{ fontSize: '24px', fontWeight: '800', letterSpacing: '-0.5px', cursor: 'pointer' }} onClick={() => { window.scrollTo({ top: 0, behavior: 'smooth' }); onStart('landing'); }}>
+        <div style={{ fontSize: '24px', fontWeight: '800', letterSpacing: '-0.5px', cursor: 'pointer' }} onClick={() => { window.scrollTo({ top: 0, behavior: 'smooth' }); setScreen('landing'); }}>
           <span style={{ background: `linear-gradient(135deg, ${theme.primary}, ${theme.violet})`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Esqory</span>
         </div>
         <nav className="nav-links" style={{ display: 'flex', gap: '30px', alignItems: 'center' }}>
@@ -355,6 +355,19 @@ const Landing = ({ onStart }) => {
         </div>
       </section>
 
+      {/* --- WHY ESQORY --- */}
+      <section id="about" style={{ padding: '100px 20px', maxWidth: '1000px', margin: '0 auto' }}>
+        <div style={{ textAlign: 'center', marginBottom: '50px' }}>
+          <h2 className="section-title" style={{ fontSize: '36px', fontWeight: '800', marginBottom: '12px', letterSpacing: '-0.5px' }}>{t('whyTitle')}</h2>
+          <p style={{ color: theme.textSecondary }}>{t('whyDesc')}</p>
+        </div>
+        <div className="grid-3" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px' }}>
+          <FeatureCard icon="🏦" title={t('realSkills')} text={t('realSkillsDesc')} />
+          <FeatureCard icon="🎮" title={t('gamification')} text={t('gamificationDesc')} />
+          <FeatureCard icon="📱" title={t('modern')} text={t('modernDesc')} />
+        </div>
+      </section>
+
       {/* --- ДЛЯ РОДИТЕЛЕЙ (TRUST SECTION) --- */}
       <section id="parents" style={{ padding: '100px 20px', maxWidth: '1000px', margin: '0 auto' }}>
         <div style={{ textAlign: 'center', marginBottom: '50px' }}>
@@ -383,23 +396,8 @@ const Landing = ({ onStart }) => {
         </div>
       </section>
 
-      {/* --- WHY ESQORY --- */}
-      <section id="about" style={{ padding: '100px 20px', maxWidth: '1000px', margin: '0 auto' }}>
-        <div style={{ textAlign: 'center', marginBottom: '50px' }}>
-          <h2 className="section-title" style={{ fontSize: '36px', fontWeight: '800', marginBottom: '12px', letterSpacing: '-0.5px' }}>{t('whyTitle')}</h2>
-          <p style={{ color: theme.textSecondary }}>{t('whyDesc')}</p>
-        </div>
-        <div className="grid-3" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px' }}>
-          <FeatureCard icon="🏦" title={t('realSkills')} text={t('realSkillsDesc')} />
-          <FeatureCard icon="🎮" title={t('gamification')} text={t('gamificationDesc')} />
-          <FeatureCard icon="📱" title={t('modern')} text={t('modernDesc')} />
-        </div>
-      </section>
-
-      <div id="features" />
-
       {/* --- SHOWCASE 1: KIDS --- */}
-      <section className="showcase-grid" style={{ padding: '100px 20px', maxWidth: '1000px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '60px', alignItems: 'center' }}>
+      <section id="features" className="showcase-grid" style={{ padding: '100px 20px', maxWidth: '1000px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '60px', alignItems: 'center' }}>
         <div>
           <span style={{ background: `${theme.primary}18`, color: theme.primary, padding: '6px 14px', borderRadius: '20px', fontSize: '12px', fontWeight: '600', letterSpacing: '0.5px' }}>ESQORY KIDS</span>
           <h2 className="section-title" style={{ fontSize: '36px', fontWeight: '800', margin: '20px 0', letterSpacing: '-0.5px' }}>{t('kidsShowcaseTitle')}</h2>
@@ -485,7 +483,7 @@ const heroCardStyle = {
   background: theme.cardGlass, border: `1px solid ${theme.border}`, borderRadius: '20px', padding: '24px',
   display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer',
   backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
-  transition: 'all 0.3s ease', textAlign: 'left'
+  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)', textAlign: 'left'
 };
 
 const mockupCardStyle = {
@@ -612,17 +610,17 @@ const KidsDashboard = ({ user, onLogout }) => {
         </div>
       </nav>
 
-      <div className="centered-container" style={{ marginTop: '30px' }}>
+      <div className="centered-container" style={{ marginTop: '30px', paddingBottom: '40px' }}>
         <div style={{ display: 'flex', justifyContent: 'center', gap: '10px', marginBottom: '30px' }}>
           <button onClick={() => setTab('wallet')} style={tab === 'wallet' ? activeTab : inactiveTab}>{t('walletTab')}</button>
           <button onClick={() => setTab('lessons')} style={tab === 'lessons' ? activeTab : inactiveTab}>{t('lessonsTab')}</button>
         </div>
 
-        <div className="centered-container centered-content" style={{ marginTop: '30px' }}>
+        <div className="centered-content" style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
           {tab === 'wallet' ? (
             <WalletComponent userData={userData} updateData={updateData} />
           ) : (
-            <div style={{ width: '100%', maxWidth: '600px' }}>
+            <div style={{ width: '100%', maxWidth: '800px' }}>
               <LessonsComponent userData={userData} updateData={updateData} />
             </div>
           )}
@@ -705,7 +703,7 @@ const WalletComponent = ({ userData, updateData }) => {
   };
 
   return (
-    <div className="glass" style={{ padding: '24px', borderRadius: '24px', width: '100%', position: 'relative', overflow: 'hidden' }}>
+    <div className="glass" style={{ padding: '24px', borderRadius: '24px', width: '100%', maxWidth: '900px', maxHeight: '85vh', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
       {showSuccessModal && (
         <div className="modal-overlay">
           <div className="glass modal-content" style={{ padding: '40px', borderRadius: '32px', textAlign: 'center', maxWidth: '420px', width: '90%', border: `1px solid ${theme.primary}50` }}>
@@ -733,9 +731,9 @@ const WalletComponent = ({ userData, updateData }) => {
         }} />
       ))}
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '30px' }} className="wallet-grid">
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '30px', flex: 1, overflowY: 'auto', paddingRight: '10px' }} className="wallet-grid">
         {/* ЛЕВАЯ КОЛОНКА: БАЛАНС И ЦЕЛЬ */}
-        <div>
+        <div style={{ paddingBottom: '20px' }}>
           <h2 style={{ marginBottom: '20px', fontSize: '24px' }}>{t('myWallet')}</h2>
           <div style={{
             background: isGoalAchieved ? `linear-gradient(135deg, ${theme.success}, #059669)` : `linear-gradient(135deg, ${theme.primary}, ${theme.violet})`,
@@ -776,7 +774,7 @@ const WalletComponent = ({ userData, updateData }) => {
         </div>
 
         {/* ПРАВАЯ КОЛОНКА: ОПЕРАЦИИ */}
-        <div>
+        <div style={{ paddingBottom: '20px' }}>
           <h4 style={{ marginBottom: '15px' }}>{t('management')}</h4>
           <div style={{ display: 'grid', gap: '10px', marginBottom: '30px' }}>
             <input type="number" placeholder={t('amountPlaceholder')} value={amount} onChange={e => setAmount(e.target.value)} style={{ ...inputStyle, marginBottom: 0 }} />
@@ -787,10 +785,10 @@ const WalletComponent = ({ userData, updateData }) => {
           </div>
 
           <h4 style={{ color: theme.textSecondary, marginBottom: '12px', fontSize: '14px' }}>{t('history')}</h4>
-          <div className="history-scroll">
+          <div className="history-scroll" style={{ maxHeight: '300px' }}>
             {userData.history.length === 0 && <p style={{ opacity: 0.5, fontSize: '13px' }}>{t('historyEmpty')}</p>}
             {userData.history.map((h, i) => (
-              <div key={i} style={{ padding: '8px 0', borderBottom: `1px solid ${theme.border}`, display: 'flex', justifyContent: 'space-between', fontSize: '13px' }}>
+              <div key={i} style={{ padding: '12px 0', borderBottom: `1px solid ${theme.border}`, display: 'flex', justifyContent: 'space-between', fontSize: '13px' }}>
                 <span style={{ color: h.color, fontWeight: '600' }}>{h.text}</span>
                 <span style={{ color: theme.textTertiary, fontSize: '11px' }}>{h.time}</span>
               </div>
@@ -1063,7 +1061,7 @@ const TaxCalculator = () => {
         value={income} onChange={e => setIncome(e.target.value)}
         style={inputStyle}
       />
-      <button onClick={calc} className="btn-primary" style={{ width: '100%', padding: '16px' }}>{t('calculateBtn')}</button>
+      <button onClick={calc} className="btn-primary" style={{ width: '100%', padding: '16px', background: `linear-gradient(135deg, ${theme.primary}, ${theme.violet})` }}>{t('calculateBtn')}</button>
 
       {res && (
         <div style={{ marginTop: '30px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }} className="grid-2">
@@ -1139,17 +1137,17 @@ const DepositCalculator = () => {
       <div style={{ marginBottom: '20px', background: theme.bg, padding: '10px', borderRadius: '12px', border: `1px solid ${theme.border}` }}>
         <label style={{ fontSize: '12px', color: theme.textSecondary, display: 'block', marginBottom: '10px' }}>{t('depositRate')}</label>
         <div style={{ display: 'flex', gap: '10px' }}>
-          <button onClick={() => setIsCustomRate(false)} style={{ ...smallTabStyle, background: !isCustomRate ? `linear-gradient(135deg, ${theme.primary}, ${theme.violet})` : 'transparent', border: !isCustomRate ? 'none' : `1px solid ${theme.border}` }}>
+          <button onClick={() => setIsCustomRate(false)} style={{ ...smallTabStyle, background: !isCustomRate ? `linear-gradient(135deg, ${theme.primary}, ${theme.violet})` : 'rgba(255,255,255,0.05)', border: !isCustomRate ? 'none' : `1px solid ${theme.border}` }}>
             {t('depositBaseRate')}
           </button>
-          <button onClick={() => setIsCustomRate(true)} style={{ ...smallTabStyle, background: isCustomRate ? `linear-gradient(135deg, ${theme.primary}, ${theme.violet})` : 'transparent', color: 'white', border: isCustomRate ? 'none' : `1px solid ${theme.border}` }}>
+          <button onClick={() => setIsCustomRate(true)} style={{ ...smallTabStyle, background: isCustomRate ? `linear-gradient(135deg, ${theme.primary}, ${theme.violet})` : 'rgba(255,255,255,0.05)', color: 'white', border: isCustomRate ? 'none' : `1px solid ${theme.border}` }}>
             {t('depositCustomRate')}
           </button>
         </div>
         {isCustomRate && <input type="number" placeholder={t('depositCustomPlaceholder')} value={customRate} onChange={e => setCustomRate(e.target.value)} style={{ ...inputStyle, marginTop: '10px', marginBottom: 0 }} />}
       </div>
 
-      <button onClick={calc} className="btn-primary" style={{ width: '100%', padding: '16px', fontSize: '16px' }}>{t('calculateBtn')} 🚀</button>
+      <button onClick={calc} className="btn-primary" style={{ width: '100%', padding: '16px', fontSize: '16px', background: `linear-gradient(135deg, ${theme.primary}, ${theme.violet})` }}>{t('calculateBtn')} 🚀</button>
 
       {result && (
         <div style={{ marginTop: '30px', paddingTop: '20px', borderTop: `1px solid ${theme.border}` }}>
