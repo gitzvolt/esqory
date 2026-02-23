@@ -102,14 +102,14 @@ html,
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);
+  background: linear-gradient(135deg, #3B82F6 0%, #4ADE80 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);
+  background: linear-gradient(135deg, #3B82F6 0%, #4ADE80 100%);
   border: none;
   color: white;
   transition: all 0.3s ease;
@@ -147,7 +147,7 @@ html,
   height: 2px;
   bottom: -4px;
   left: 0;
-  background: linear-gradient(90deg, #3B82F6, #8B5CF6);
+  background: linear-gradient(90deg, #3B82F6, #4ADE80);
   transition: width 0.3s ease;
 }
 

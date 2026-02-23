@@ -11,7 +11,7 @@ export const translations = {
 
         // Auth
         createAccount: "Create Account",
-        loginTitle: "Login to Esqory",
+        loginTitle: "Login to EsQory",
         forKids: "For Kids",
         forTeens: "For Teens",
         usernamePlaceholder: "Username",
@@ -43,7 +43,7 @@ export const translations = {
         habitsDesc: "We teach to distinguish 'Want' from 'Need' and explain the value of work.",
 
         // Why Section
-        whyTitle: "Why Esqory?",
+        whyTitle: "Why EsQory?",
         whyDesc: "We are not just a textbook. We are a real-life simulator in the digital world.",
         realSkills: "Real Skills",
         realSkillsDesc: "No boring theory. Learn how taxes, deposits and freelance work in Kazakhstan.",
@@ -71,6 +71,7 @@ export const translations = {
         taxSimTitle: "Tax Simulator",
         incomeLabel: "Your Income (₸)",
         calculateBtn: "Calculate Taxes",
+        calculateDepositBtn: "Calculate Deposit",
 
         // Dashboard Common
         walletTab: "💰 Wallet",
@@ -115,7 +116,7 @@ export const translations = {
         depositTab: "📈 Savings",
         academyTab: "🎓 Academy",
         taxSimDesc: "Calculate how much you need to pay to the state to sleep soundly. Safe simulation.",
-        taxSelf: "Self-employed (1%)",
+        taxSelf: "Self-employed ",
         taxIp: "IE Simplified (3%)",
         taxSelfDesc: "Ideal for freelancers in RK",
         taxIpDesc: "If you work under contracts",
@@ -133,11 +134,7 @@ export const translations = {
         totalAmountAfter: "Total amount after",
         yearsLabel: "years",
         academyLessonLabel: "BUSINESS LESSON",
-        startBtn: "Start",
-
-        // Footer
-        privacy: "Privacy Policy",
-        contacts: "Contacts"
+        startBtn: "Start"
     },
     ru: {
         // Header & Navigation
@@ -151,7 +148,7 @@ export const translations = {
 
         // Auth
         createAccount: "Создать аккаунт",
-        loginTitle: "Вход в Esqory",
+        loginTitle: "Вход в EsQory",
         forKids: "Для детей",
         forTeens: "Для подростков",
         usernamePlaceholder: "Логин (Имя)",
@@ -183,7 +180,7 @@ export const translations = {
         habitsDesc: "Учим отличать «Хочу» от «Надо» и объясняем ценность труда. Финансовая грамотность — фундамент успеха.",
 
         // Why Section
-        whyTitle: "Почему Esqory?",
+        whyTitle: "Почему EsQory?",
         whyDesc: "Мы не просто учебник. Мы — симулятор реальной жизни в цифровом мире.",
         realSkills: "Реальные навыки",
         realSkillsDesc: "Никакой скучной теории. Узнай, как работают налоги, депозиты и фриланс в Казахстане.",
@@ -211,6 +208,7 @@ export const translations = {
         taxSimTitle: "Налоговый симулятор",
         incomeLabel: "Твой доход (₸)",
         calculateBtn: "Рассчитать налоги",
+        calculateDepositBtn: "Рассчитать депозит",
 
         // Dashboard Common
         walletTab: "💰 Копилка",
@@ -255,7 +253,7 @@ export const translations = {
         depositTab: "📈 Депозит",
         academyTab: "🎓 Академия",
         taxSimDesc: "Посчитай, сколько нужно отдать государству, чтобы спать спокойно.",
-        taxSelf: "Самозанятый (1%)",
+        taxSelf: "Самозанятый ",
         taxIp: "ИП Упрощенка (3%)",
         taxSelfDesc: "Идеально для фрилансеров РК",
         taxIpDesc: "Если работаешь по договорам",
@@ -273,11 +271,7 @@ export const translations = {
         totalAmountAfter: "Итоговая сумма через",
         yearsLabel: "лет",
         academyLessonLabel: "БИЗНЕС-УРОК",
-        startBtn: "Начать",
-
-        // Footer
-        privacy: "Политика конфиденциальности",
-        contacts: "Контакты"
+        startBtn: "Начать"
     },
     kk: {
         // Header & Navigation
@@ -291,7 +285,7 @@ export const translations = {
 
         // Auth
         createAccount: "Аккаунт жасау",
-        loginTitle: "Esqory-ға кіру",
+        loginTitle: "EsQory-ға кіру",
         forKids: "Балалар үшін",
         forTeens: "Жасөспірімдер үшін",
         usernamePlaceholder: "Логин (Аты)",
@@ -323,7 +317,7 @@ export const translations = {
         habitsDesc: "«Қалаймын» мен «Керек» дегенді ажыратуды үйретеміз және еңбектің құндылығын түсіндіреміз.",
 
         // Why Section
-        whyTitle: "Неліктен Esqory?",
+        whyTitle: "Неліктен EsQory?",
         whyDesc: "Біз жай оқулық емеспіз. Біз цифрлық әлемдегі нақты өмірдің симуляторымыз.",
         realSkills: "Нақты дағдылар",
         realSkillsDesc: "Ешқандай жалықтыратын теория жоқ. Қазақстанда салықтар, депозиттер және фриланс қалай жұмыс істейтінін біліңіз.",
@@ -351,6 +345,7 @@ export const translations = {
         taxSimTitle: "Салық симуляторы",
         incomeLabel: "Сіздің табысыңыз (₸)",
         calculateBtn: "Салықты есептеу",
+        calculateDepositBtn: "Депозитті есептеу",
 
         // Dashboard Common
         walletTab: "💰 Әмиян",
@@ -395,7 +390,7 @@ export const translations = {
         depositTab: "📈 Депозит",
         academyTab: "🎓 Академия",
         taxSimDesc: "Мемлекетке қанша төлеу керектігін есептеңіз. Қауіпсіз симуляция.",
-        taxSelf: "Өзін-өзі жұмыспен қамтыған (1%)",
+        taxSelf: "Өзін-өзі жұмыспен қамтыған ",
         taxIp: "ЖК Оңайлатылған (3%)",
         taxSelfDesc: "Қазақстандағы фрилансерлер үшін қолайлы",
         taxIpDesc: "Егер келісімшартпен жұмыс істесеңіз",
@@ -413,10 +408,6 @@ export const translations = {
         totalAmountAfter: "Жалпы сома",
         yearsLabel: "жылдан кейін",
         academyLessonLabel: "БИЗНЕС-САБАҚ",
-        startBtn: "Бастау",
-
-        // Footer
-        privacy: "Құпиялылық саясаты",
-        contacts: "Байланыс"
+        startBtn: "Бастау"
     }
 };
